@@ -69,12 +69,48 @@ dependencies {
 publishing {
     publications {
         create<MavenPublication>("release") {
-            groupId = "com.devgun.shadcn_android"
-            artifactId = "shadcn-ui"
-            version = "0.1.0"
+            groupId = property("shadcn.groupId") as String
+            artifactId = property("shadcn.artifactId") as String
+            version = property("shadcn.version") as String
 
             afterEvaluate {
                 from(components["release"])
+            }
+
+            pom {
+                name.set("shadcn-ui")
+                description.set("shadcn-inspired Jetpack Compose UI components for Android.")
+                url.set("https://github.com/${property("github.owner")}/${property("github.repository")}")
+                licenses {
+                    license {
+                        name.set("The Apache License, Version 2.0")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+                    }
+                }
+                scm {
+                    url.set("https://github.com/${property("github.owner")}/${property("github.repository")}")
+                    connection.set(
+                        "scm:git:git://github.com/${property("github.owner")}/${property("github.repository")}.git",
+                    )
+                    developerConnection.set(
+                        "scm:git:ssh://github.com/${property("github.owner")}/${property("github.repository")}.git",
+                    )
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri(
+                "https://maven.pkg.github.com/${property("github.owner")}/${property("github.repository")}",
+            )
+            credentials {
+                username = (findProperty("gpr.user") as String?)
+                    ?: System.getenv("GITHUB_ACTOR")
+                password = (findProperty("gpr.key") as String?)
+                    ?: System.getenv("GITHUB_TOKEN")
             }
         }
     }

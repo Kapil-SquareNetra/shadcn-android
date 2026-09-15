@@ -43,7 +43,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":shadcn-ui"))
+    implementation(
+        "${property("shadcn.groupId")}:${property("shadcn.artifactId")}:${property("shadcn.version")}",
+    )
 
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
