@@ -1,0 +1,63 @@
+# Built artifacts
+*.apk
+*.aar
+*.ap_
+*.aab
+*.dex
+*.class
+
+# Generated
+bin/
+gen/
+out/
+release/
+build/
+.navigation/
+captures/
+.externalNativeBuild
+.cxx/
+
+# Gradle
+.gradle/
+gradle-app.setting
+.gradletasknamecache
+
+# Local SDK / secrets
+local.properties
+*.jks
+*.keystore
+*.key
+google-services.json
+
+# Android Studio / IntelliJ
+*.iml
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/misc.xml
+.idea/deploymentTargetSelector.xml
+.idea/deploymentTargetDropDown.xml
+.idea/androidTestResultsUserPreferences.xml
+.idea/appInsightsSettings.xml
+.idea/deviceManager.xml
+.idea/runConfigurations.xml
+.idea/vcs.xml
+.idea/shelf/
+
+# Kotlin
+.kotlin/
+
+# Profiling / logs
+*.hprof
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
