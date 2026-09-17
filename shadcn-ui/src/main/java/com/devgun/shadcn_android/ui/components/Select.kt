@@ -14,7 +14,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import com.devgun.shadcn_android.ui.foundation.ShadcnTextFieldPlaceholder
 import com.devgun.shadcn_android.ui.foundation.shadcnTextFieldColors
+import com.devgun.shadcn_android.ui.foundation.shadcnTextFieldTextStyle
 import com.devgun.shadcn_android.ui.theme.ShadcnTheme
 
 data class SelectOption(
@@ -51,8 +53,9 @@ fun Select(
                 .menuAnchor(MenuAnchorType.PrimaryNotEditable),
             readOnly = true,
             enabled = enabled,
+            textStyle = shadcnTextFieldTextStyle,
             label = label?.let { { Text(it) } },
-            placeholder = placeholder?.let { { Text(it) } },
+            placeholder = placeholder?.let { { ShadcnTextFieldPlaceholder(it) } },
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
             shape = radius.mdShape,
             colors = shadcnTextFieldColors(),

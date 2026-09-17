@@ -1,11 +1,39 @@
 package com.devgun.shadcn_android.ui.foundation
 
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.text.selection.TextSelectionColors
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.PlatformTextStyle
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.LineHeightStyle
 import com.devgun.shadcn_android.ui.theme.ShadcnTheme
+
+internal val shadcnTextFieldTextStyle: TextStyle
+    @Composable
+    get() = MaterialTheme.typography.bodyMedium.copy(
+        platformStyle = PlatformTextStyle(includeFontPadding = false),
+        lineHeightStyle = LineHeightStyle(
+            alignment = LineHeightStyle.Alignment.Center,
+            trim = LineHeightStyle.Trim.Both,
+        ),
+    )
+
+@Composable
+internal fun ShadcnTextFieldPlaceholder(text: String) {
+    Text(
+        text = text,
+        modifier = Modifier.wrapContentHeight(align = Alignment.Top),
+        style = shadcnTextFieldTextStyle,
+        color = Color.Unspecified,
+    )
+}
 
 @Composable
 fun shadcnTextFieldColors(

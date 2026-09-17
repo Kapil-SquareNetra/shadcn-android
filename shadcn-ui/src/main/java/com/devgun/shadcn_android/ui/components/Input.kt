@@ -4,12 +4,14 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.TextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.VisualTransformation
+import com.devgun.shadcn_android.ui.foundation.ShadcnTextFieldPlaceholder
 import com.devgun.shadcn_android.ui.foundation.shadcnTextFieldColors
+import com.devgun.shadcn_android.ui.foundation.shadcnTextFieldTextStyle
 import com.devgun.shadcn_android.ui.theme.ShadcnTheme
 
 @Composable
@@ -41,9 +43,9 @@ fun Input(
             modifier = modifier,
             enabled = enabled,
             readOnly = readOnly,
-            textStyle = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
+            textStyle = shadcnTextFieldTextStyle,
             label = if (label != null) { { Text(label) } } else null,
-            placeholder = if (placeholder != null) { { Text(placeholder) } } else null,
+            placeholder = if (placeholder != null) { { ShadcnTextFieldPlaceholder(placeholder) } } else null,
             leadingIcon = leadingIcon,
             trailingIcon = trailingIcon,
             isError = isError,
@@ -62,9 +64,9 @@ fun Input(
             modifier = modifier,
             enabled = enabled,
             readOnly = readOnly,
-            textStyle = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
+            textStyle = shadcnTextFieldTextStyle,
             label = if (label != null) { { Text(label) } } else null,
-            placeholder = if (placeholder != null) { { Text(placeholder) } } else null,
+            placeholder = if (placeholder != null) { { ShadcnTextFieldPlaceholder(placeholder) } } else null,
             leadingIcon = leadingIcon,
             trailingIcon = trailingIcon,
             isError = isError,

@@ -67,14 +67,22 @@ fun CatalogNavHost(
     onToggleTheme: () -> Unit,
     navController: NavHostController = rememberNavController(),
 ) {
+    CatalogThemeProvider(
+        darkTheme = darkTheme,
+        onToggleTheme = onToggleTheme,
+    ) {
+        CatalogNavHostContent(navController)
+    }
+}
+
+@Composable
+private fun CatalogNavHostContent(navController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = CATALOG_ROUTE,
     ) {
         composable(CATALOG_ROUTE) {
             CatalogScreen(
-                darkTheme = darkTheme,
-                onToggleTheme = onToggleTheme,
                 onNavigateToSample = { destination ->
                     navController.navigate(destination.route)
                 },

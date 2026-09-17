@@ -14,7 +14,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import com.devgun.shadcn_android.ui.foundation.ShadcnTextFieldPlaceholder
 import com.devgun.shadcn_android.ui.foundation.shadcnTextFieldColors
+import com.devgun.shadcn_android.ui.foundation.shadcnTextFieldTextStyle
 import com.devgun.shadcn_android.ui.theme.ShadcnTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -52,7 +54,8 @@ fun Combobox(
                 .fillMaxWidth()
                 .menuAnchor(MenuAnchorType.PrimaryEditable),
             enabled = enabled,
-            placeholder = { Text(placeholder) },
+            textStyle = shadcnTextFieldTextStyle,
+            placeholder = { ShadcnTextFieldPlaceholder(placeholder) },
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
             shape = radius.mdShape,
             colors = shadcnTextFieldColors(),

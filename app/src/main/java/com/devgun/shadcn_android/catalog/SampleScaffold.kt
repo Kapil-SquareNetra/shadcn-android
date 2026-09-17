@@ -8,6 +8,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.DarkMode
+import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -15,9 +17,39 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.devgun.shadcn_android.ui.theme.ShadcnTheme
+
+internal val LocalCatalogDarkTheme = compositionLocalOf { false }
+internal val LocalCatalogToggleTheme = staticCompositionLocalOf<() -> Unit> { {} }
+
+@Composable
+internal fun CatalogThemeProvider(
+    darkTheme: Boolean,
+    onToggleTheme: () -> Unit,
+    content: @Composable () -> Unit,
+) {
+    CompositionLocalProvider(
+        LocalCatalogDarkTheme provides darkTheme,
+        LocalCatalogToggleTheme provides onToggleTheme,
+        content = content,
+    )
+}
+
+@Composable
+internal fun ThemeToggleButton() {
+    val darkTheme = LocalCatalogDarkTheme.current
+    IconButton(onClick = LocalCatalogToggleTheme.current) {
+        Icon(
+            imageVector = if (darkTheme) Icons.Default.LightMode else Icons.Default.DarkMode,
+            contentDescription = if (darkTheme) "Switch to light mode" else "Switch to dark mode",
+        )
+    }
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -38,6 +70,7 @@ fun SampleScaffold(
                         )
                     }
                 },
+                actions = { ThemeToggleButton() },
             )
         },
         containerColor = ShadcnTheme.colors.background,
